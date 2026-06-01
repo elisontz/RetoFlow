@@ -47,8 +47,12 @@ struct AboutView: View {
                         .foregroundColor(.primary)
                     Link(destination: repositoryURL) {
                         HStack(spacing: 6) {
-                            GitHubMark()
+                            Image("GitHubMark")
+                                .renderingMode(.template)
+                                .resizable()
+                                .scaledToFit()
                                 .frame(width: 16, height: 16)
+                                .accessibilityHidden(true)
                             Text("GitHub")
                                 .font(.system(size: ToolPanelTypography.compactSupportingTextSize, weight: ToolPanelTypography.regularWeight))
                         }
@@ -67,46 +71,5 @@ struct AboutView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .background(Color(nsColor: .windowBackgroundColor))
-    }
-}
-
-private struct GitHubMark: View {
-    var body: some View {
-        ZStack {
-            Circle()
-                .fill(.primary)
-
-            Circle()
-                .fill(Color(nsColor: .controlBackgroundColor))
-                .frame(width: 8, height: 6)
-                .offset(y: 4)
-
-            HStack(spacing: 6) {
-                RoundedRectangle(cornerRadius: 1)
-                    .fill(.primary)
-                    .frame(width: 3, height: 6)
-                    .rotationEffect(.degrees(28))
-                RoundedRectangle(cornerRadius: 1)
-                    .fill(.primary)
-                    .frame(width: 3, height: 6)
-                    .rotationEffect(.degrees(-28))
-            }
-            .offset(y: 7)
-        }
-        .overlay(alignment: .topLeading) {
-            RoundedRectangle(cornerRadius: 1.5)
-                .fill(.primary)
-                .frame(width: 5, height: 5)
-                .rotationEffect(.degrees(45))
-                .offset(x: 3, y: 1)
-        }
-        .overlay(alignment: .topTrailing) {
-            RoundedRectangle(cornerRadius: 1.5)
-                .fill(.primary)
-                .frame(width: 5, height: 5)
-                .rotationEffect(.degrees(45))
-                .offset(x: -3, y: 1)
-        }
-        .accessibilityHidden(true)
     }
 }
