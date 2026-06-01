@@ -3,6 +3,7 @@ import SwiftUI
 struct AboutView: View {
     private let fallbackVersion = "1.0.0"
     private let fallbackBuild = "100"
+    private let repositoryURL = URL(string: "https://github.com/elisontz/RetoFlow")!
 
     private var versionText: String {
         let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? fallbackVersion
@@ -44,6 +45,18 @@ struct AboutView: View {
                     Text(versionText)
                         .font(.system(size: ToolPanelTypography.compactSupportingTextSize, weight: ToolPanelTypography.regularWeight))
                         .foregroundColor(.primary)
+                    Link(destination: repositoryURL) {
+                        HStack(spacing: 6) {
+                            GitHubMark()
+                                .frame(width: 16, height: 16)
+                            Text("GitHub")
+                                .font(.system(size: ToolPanelTypography.compactSupportingTextSize, weight: ToolPanelTypography.regularWeight))
+                        }
+                        .foregroundStyle(.primary)
+                        .padding(.top, 4)
+                    }
+                    .buttonStyle(.plain)
+                    .help("打开 RetoFlow 的 GitHub 仓库")
                 }
                 .padding(16)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -54,5 +67,46 @@ struct AboutView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .background(Color(nsColor: .windowBackgroundColor))
+    }
+}
+
+private struct GitHubMark: View {
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(.primary)
+
+            Circle()
+                .fill(Color(nsColor: .controlBackgroundColor))
+                .frame(width: 8, height: 6)
+                .offset(y: 4)
+
+            HStack(spacing: 6) {
+                RoundedRectangle(cornerRadius: 1)
+                    .fill(.primary)
+                    .frame(width: 3, height: 6)
+                    .rotationEffect(.degrees(28))
+                RoundedRectangle(cornerRadius: 1)
+                    .fill(.primary)
+                    .frame(width: 3, height: 6)
+                    .rotationEffect(.degrees(-28))
+            }
+            .offset(y: 7)
+        }
+        .overlay(alignment: .topLeading) {
+            RoundedRectangle(cornerRadius: 1.5)
+                .fill(.primary)
+                .frame(width: 5, height: 5)
+                .rotationEffect(.degrees(45))
+                .offset(x: 3, y: 1)
+        }
+        .overlay(alignment: .topTrailing) {
+            RoundedRectangle(cornerRadius: 1.5)
+                .fill(.primary)
+                .frame(width: 5, height: 5)
+                .rotationEffect(.degrees(45))
+                .offset(x: -3, y: 1)
+        }
+        .accessibilityHidden(true)
     }
 }
