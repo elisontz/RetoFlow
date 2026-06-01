@@ -115,7 +115,7 @@ For code changes, please keep the scope focused and include tests for file opera
 
 ## License
 
-This repository does not include an open-source license yet. Add a `LICENSE` file before publishing the project publicly on GitHub so users know what they are allowed to do with the code.
+RetoFlow is released under the [MIT License](LICENSE).
 
 [Back to top](#retoflow)
 
@@ -232,6 +232,6 @@ View -> ViewModel -> Use Case -> OperationPlan -> Preflight -> Execution -> Task
 
 ## 许可证
 
-当前仓库还没有正式的开源许可证。公开发布前建议补上 `LICENSE` 文件，让使用者知道可以如何使用和分发代码。
+RetoFlow 基于 [MIT License](LICENSE) 开源。
 
 [回到顶部](#retoflow)
