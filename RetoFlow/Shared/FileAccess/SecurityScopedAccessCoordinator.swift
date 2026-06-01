@@ -8,10 +8,7 @@ protocol SecurityScopedAccessing: Sendable {
 }
 
 // Module-level constant: free from @MainActor inference that applies to static class members.
-// `nonisolated(unsafe)` is required here: SWIFT_DEFAULT_ACTOR_ISOLATION=MainActor would otherwise
-// infer @MainActor on this let, preventing access from nonisolated contexts. The value is a
-// Sendable type constructed once at startup, so this is safe.
-nonisolated(unsafe) private let _sharedSecurityScopedAccessCoordinator = SecurityScopedAccessCoordinator()
+nonisolated private let _sharedSecurityScopedAccessCoordinator = SecurityScopedAccessCoordinator()
 
 /// Returns the shared SecurityScopedAccessCoordinator instance.
 /// Using a free function avoids @MainActor inference that applies to static class members.
